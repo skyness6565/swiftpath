@@ -219,11 +219,11 @@ const TrackingPage = () => {
                   </h2>
                   <p className="text-red-400 text-sm leading-relaxed">
                     Your goods have been seized by customs. To avoid losing your package, please contact our support team immediately via WhatsApp at{" "}
-                    <a href="https://wa.me/447916341577" target="_blank" rel="noopener noreferrer" className="font-bold underline hover:text-red-300 transition-colors">
-                      +44 7916 341577
+                    <a href="https://wa.me/17693590769" target="_blank" rel="noopener noreferrer" className="font-bold underline hover:text-red-300 transition-colors">
+                      +1 (769) 359-0769
                     </a>{" "}or email{" "}
-                    <a href="mailto:skynetworldwideexpress43@gmail.com" className="font-bold underline hover:text-red-300 transition-colors">
-                      skynetworldwideexpress43@gmail.com
+                    <a href="mailto:support@swiftpathdelivery.site" className="font-bold underline hover:text-red-300 transition-colors">
+                      support@swiftpathdelivery.site
                     </a>
                     . Failure to respond within 48 hours may result in permanent confiscation of your shipment.
                   </p>

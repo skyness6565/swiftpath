@@ -221,8 +221,8 @@ const TrackingSection = () => {
                       <h3 className="font-bold text-red-500 mb-1">⚠️ Customs Hold - Action Required</h3>
                       <p className="text-red-400 text-sm">
                         Your goods have been seized by customs. Contact us via WhatsApp{" "}
-                        <a href="https://wa.me/447916341577" target="_blank" rel="noopener noreferrer" className="font-bold underline">+44 7916 341577</a>{" "}
-                        or email <a href="mailto:skynetworldwideexpress43@gmail.com" className="font-bold underline">skynetworldwideexpress43@gmail.com</a>
+                        <a href="https://wa.me/17693590769" target="_blank" rel="noopener noreferrer" className="font-bold underline">+1 (769) 359-0769</a>{" "}
+                        or email <a href="mailto:support@swiftpathdelivery.site" className="font-bold underline">support@swiftpathdelivery.site</a>
                       </p>
                     </div>
                   </div>
