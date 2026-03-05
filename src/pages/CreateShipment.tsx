@@ -18,7 +18,47 @@ import { toast } from "sonner";
 import { useAdmin } from "@/contexts/AdminContext";
 import { supabase } from "@/integrations/supabase/client";
 
-const currencies = ["USD", "EUR", "GBP", "CAD", "AUD", "JPY", "CNY"];
+const currencies = [
+  "USD", "EUR", "GBP", "CAD", "AUD", "JPY", "CNY", "INR", "BRL", "MXN",
+  "KRW", "SGD", "HKD", "NOK", "SEK", "DKK", "NZD", "ZAR", "CHF", "TRY",
+  "RUB", "PLN", "THB", "IDR", "MYR", "PHP", "CZK", "HUF", "ILS", "CLP",
+  "TWD", "ARS", "COP", "PEN", "SAR", "AED", "QAR", "KWD", "BHD", "OMR",
+  "EGP", "NGN", "KES", "GHS", "UGX", "TZS", "MAD", "DZD", "PKR", "BDT",
+  "LKR", "VND", "MMK", "UAH", "RON", "BGN", "HRK", "ISK", "GEL", "AMD",
+  "JOD", "LBP", "IQD", "XOF", "XAF", "XCD", "FJD", "PGK", "WST", "TOP",
+  "BWP", "MZN", "ZMW", "ETB", "RWF", "UZS", "KZT", "AZN", "TMT", "GEL",
+  "MDL", "ALL", "MKD", "RSD", "BAM", "GTQ", "HNL", "NIO", "CRC", "PAB",
+  "DOP", "JMD", "TTD", "BBD", "BZD", "GYD", "SRD", "HTG", "CUP", "BOB",
+  "PYG", "UYU", "VES", "AWG", "ANG", "BMD", "KYD", "BSD", "XPF", "MVR",
+  "NPR", "BND", "LAK", "KHR", "MNT", "KPW", "IRR", "AFN", "SYP", "YER",
+  "TND", "LYD", "SDG", "SOS", "DJF", "KMF", "SCR", "MUR", "MGA", "MWK",
+  "LSL", "SZL", "NAD", "ERN", "GMD", "SLL", "GNF", "LRD", "CVE", "STN",
+  "BIF", "CDF", "AOA", "SBD", "VUV", "TVD", "KID"
+];
+
+const getCurrencyForLocale = (): string => {
+  try {
+    const locale = navigator.language || "en-US";
+    const parts = locale.split("-");
+    const country = parts.length > 1 ? parts[1].toUpperCase() : parts[0].toUpperCase();
+    const countryToCurrency: Record<string, string> = {
+      US: "USD", GB: "GBP", CA: "CAD", AU: "AUD", JP: "JPY", CN: "CNY",
+      IN: "INR", BR: "BRL", MX: "MXN", KR: "KRW", SG: "SGD", HK: "HKD",
+      NO: "NOK", SE: "SEK", DK: "DKK", NZ: "NZD", ZA: "ZAR", CH: "CHF",
+      TR: "TRY", RU: "RUB", PL: "PLN", TH: "THB", ID: "IDR", MY: "MYR",
+      PH: "PHP", CZ: "CZK", HU: "HUF", IL: "ILS", CL: "CLP", TW: "TWD",
+      AR: "ARS", CO: "COP", PE: "PEN", SA: "SAR", AE: "AED", EG: "EGP",
+      NG: "NGN", KE: "KES", GH: "GHS", PK: "PKR", BD: "BDT", VN: "VND",
+      UA: "UAH", RO: "RON", DE: "EUR", FR: "EUR", IT: "EUR", ES: "EUR",
+      PT: "EUR", NL: "EUR", BE: "EUR", AT: "EUR", IE: "EUR", FI: "EUR",
+      GR: "EUR", SK: "EUR", SI: "EUR", LT: "EUR", LV: "EUR", EE: "EUR",
+      MT: "EUR", CY: "EUR", LU: "EUR",
+    };
+    return countryToCurrency[country] || "USD";
+  } catch {
+    return "USD";
+  }
+};
 
 const generateTrackingNumber = () => {
   const prefix = "GLX";
@@ -54,7 +94,7 @@ const CreateShipment = () => {
     packageDescription: "",
     weightKg: "",
     shippingFee: "",
-    currency: "USD",
+    currency: getCurrencyForLocale(),
     deliveryDays: "",
     serviceType: "standard",
     customsHold: false,
@@ -117,7 +157,7 @@ const CreateShipment = () => {
     const estimatedDelivery = new Date();
     estimatedDelivery.setDate(estimatedDelivery.getDate() + (parseInt(formData.deliveryDays) || 7));
 
-    const { error } = await supabase.from("shipments").insert({
+    const { data: insertedShipment, error } = await supabase.from("shipments").insert({
       tracking_number: trackingNumber,
       status: "processing",
       sender_name: formData.senderName,
@@ -140,12 +180,20 @@ const CreateShipment = () => {
       estimated_delivery: estimatedDelivery.toISOString().split("T")[0],
       customs_hold: formData.customsHold,
       package_images: packageImages.length > 0 ? packageImages : null,
-    });
+    }).select().single();
 
     if (error) {
       toast.error("Failed to create shipment");
       console.error(error);
     } else {
+      // Auto-create initial tracking event
+      await supabase.from("shipment_events").insert({
+        shipment_id: insertedShipment.id,
+        title: "Package Created & Processing",
+        location: formData.origin,
+        event_date: new Date().toISOString(),
+        completed: true,
+      });
       toast.success("Shipment created successfully!");
       setCreatedTracking(trackingNumber);
     }
@@ -221,7 +269,7 @@ const CreateShipment = () => {
                       packageDescription: "",
                       weightKg: "",
                       shippingFee: "",
-                      currency: "USD",
+                      currency: getCurrencyForLocale(),
                       deliveryDays: "",
                       serviceType: "standard",
                       customsHold: false,
