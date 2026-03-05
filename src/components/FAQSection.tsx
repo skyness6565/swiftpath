@@ -86,7 +86,7 @@ const faqs = [
     questions: [
       {
         question: "Which countries do you ship to?",
-        answer: "ExpressWays Logistics operates in over 150 countries worldwide. We have established networks across North America, South America, Europe, Asia-Pacific, Middle East, and Africa. Some remote locations may have limited service options.",
+        answer: "SwiftPath Delivery operates in over 150 countries worldwide. We have established networks across North America, South America, Europe, Asia-Pacific, Middle East, and Africa. Some remote locations may have limited service options.",
       },
       {
         question: "Do you offer door-to-door international delivery?",
@@ -106,7 +106,6 @@ const FAQSection = () => {
   return (
     <section id="faq" className="bg-background py-12 md:py-20 lg:py-24">
       <div className="container-wide section-padding">
-        {/* Header */}
         <div className="text-center mb-10 md:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 text-accent mb-4 md:mb-6">
             <HelpCircle className="w-3 h-3 md:w-4 md:h-4" />
@@ -120,16 +119,13 @@ const FAQSection = () => {
           </p>
         </div>
 
-        {/* Category Tabs */}
         <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12">
           {faqs.map((category) => {
             const Icon = category.icon;
             return (
               <button
                 key={category.category}
-                onClick={() => setActiveCategory(
-                  activeCategory === category.category ? null : category.category
-                )}
+                onClick={() => setActiveCategory(activeCategory === category.category ? null : category.category)}
                 className={`flex items-center gap-2 px-3 md:px-4 py-2 rounded-full text-xs md:text-sm font-medium transition-all ${
                   activeCategory === category.category
                     ? "bg-accent text-accent-foreground shadow-glow"
@@ -144,15 +140,12 @@ const FAQSection = () => {
           })}
         </div>
 
-        {/* FAQ Accordions */}
         <div className="max-w-3xl mx-auto">
           {faqs.map((category) => (
             <div
               key={category.category}
               className={`transition-all duration-300 ${
-                activeCategory === category.category || activeCategory === null
-                  ? "opacity-100"
-                  : "hidden"
+                activeCategory === category.category || activeCategory === null ? "opacity-100" : "hidden"
               }`}
             >
               {(activeCategory === null || activeCategory === category.category) && (
@@ -185,13 +178,12 @@ const FAQSection = () => {
           ))}
         </div>
 
-        {/* Contact CTA */}
         <div className="text-center mt-10 md:mt-16">
           <p className="text-muted-foreground mb-4 text-sm md:text-base">
             Still have questions? Our support team is here to help.
           </p>
           <a
-            href="mailto:skynetworldwideexpress43@gmail.com"
+            href="mailto:support@swiftpathdelivery.site"
             className="inline-flex items-center gap-2 text-accent font-medium hover:underline text-sm md:text-base"
           >
             Contact Support
