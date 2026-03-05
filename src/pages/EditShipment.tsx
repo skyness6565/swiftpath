@@ -37,7 +37,23 @@ const statusOptions = [
   { value: "cancelled", label: "Cancelled" },
 ];
 
-const currencies = ["USD", "EUR", "GBP", "CAD", "AUD", "JPY", "CNY"];
+const currencies = [
+  "USD", "EUR", "GBP", "CAD", "AUD", "JPY", "CNY", "INR", "BRL", "MXN",
+  "KRW", "SGD", "HKD", "NOK", "SEK", "DKK", "NZD", "ZAR", "CHF", "TRY",
+  "RUB", "PLN", "THB", "IDR", "MYR", "PHP", "CZK", "HUF", "ILS", "CLP",
+  "TWD", "ARS", "COP", "PEN", "SAR", "AED", "QAR", "KWD", "BHD", "OMR",
+  "EGP", "NGN", "KES", "GHS", "UGX", "TZS", "MAD", "DZD", "PKR", "BDT",
+  "LKR", "VND", "MMK", "UAH", "RON", "BGN", "HRK", "ISK", "GEL", "AMD",
+  "JOD", "LBP", "IQD", "XOF", "XAF", "XCD", "FJD", "PGK", "WST", "TOP",
+  "BWP", "MZN", "ZMW", "ETB", "RWF", "UZS", "KZT", "AZN", "TMT", "GEL",
+  "MDL", "ALL", "MKD", "RSD", "BAM", "GTQ", "HNL", "NIO", "CRC", "PAB",
+  "DOP", "JMD", "TTD", "BBD", "BZD", "GYD", "SRD", "HTG", "CUP", "BOB",
+  "PYG", "UYU", "VES", "AWG", "ANG", "BMD", "KYD", "BSD", "XPF", "MVR",
+  "NPR", "BND", "LAK", "KHR", "MNT", "KPW", "IRR", "AFN", "SYP", "YER",
+  "TND", "LYD", "SDG", "SOS", "DJF", "KMF", "SCR", "MUR", "MGA", "MWK",
+  "LSL", "SZL", "NAD", "ERN", "GMD", "SLL", "GNF", "LRD", "CVE", "STN",
+  "BIF", "CDF", "AOA", "SBD", "VUV", "TVD", "KID"
+];
 
 const EditShipment = () => {
   const { id } = useParams<{ id: string }>();
