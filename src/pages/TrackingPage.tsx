@@ -203,7 +203,7 @@ const TrackingPage = () => {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
         {/* Customs Hold Warning */}
         {shipment?.customs_hold && (
           <div className="mb-6 animate-fade-in">
@@ -234,7 +234,7 @@ const TrackingPage = () => {
         )}
 
         {/* Hero Card */}
-        <div className="bg-gradient-to-br from-accent to-orange-glow rounded-2xl p-6 md:p-8 mb-8 relative overflow-hidden animate-fade-in">
+        <div className="bg-gradient-to-br from-accent to-orange-glow rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 mb-6 md:mb-8 relative overflow-hidden animate-fade-in">
           <div className="absolute inset-0 opacity-50" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }} />
@@ -247,14 +247,14 @@ const TrackingPage = () => {
           </div>
           
           <div className="relative z-10">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 md:mb-6">
               <div>
-                <p className="text-accent-foreground/70 text-sm mb-1">Tracking Number</p>
-                <h1 className="text-2xl md:text-3xl font-display font-bold text-accent-foreground">
+                <p className="text-accent-foreground/70 text-xs md:text-sm mb-1">Tracking Number</p>
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-accent-foreground break-all">
                   {shipment?.tracking_number}
                 </h1>
               </div>
-              <div className={`flex items-center gap-3 px-4 py-2 rounded-full backdrop-blur-sm transition-all duration-300 ${
+              <div className={`inline-flex self-start sm:self-auto items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full backdrop-blur-sm transition-all duration-300 ${
                 shipment?.customs_hold 
                   ? "bg-red-500/30 ring-2 ring-red-500/50" 
                   : "bg-accent-foreground/20"
@@ -267,7 +267,7 @@ const TrackingPage = () => {
                     <span className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-ping" />
                   </div>
                 )}
-                <span className="font-semibold text-accent-foreground">
+                <span className="font-semibold text-xs sm:text-sm md:text-base text-accent-foreground">
                   {shipment?.customs_hold ? "Customs Hold" : statusLabels[shipment?.status || "processing"]}
                 </span>
               </div>
@@ -285,7 +285,7 @@ const TrackingPage = () => {
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
                     <div
-                      className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center mb-2 transition-all duration-500 transform ${
+                      className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center mb-1 sm:mb-2 transition-all duration-500 transform ${
                         index < currentStatusIndex
                           ? "bg-accent-foreground text-accent scale-100"
                           : index === currentStatusIndex
@@ -294,14 +294,14 @@ const TrackingPage = () => {
                       }`}
                     >
                       {index < currentStatusIndex ? (
-                        <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5" />
+                        <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                       ) : index === currentStatusIndex ? (
-                        <div className="relative">
+                        <div className="relative [&>svg]:w-3 [&>svg]:h-3 sm:[&>svg]:w-4 sm:[&>svg]:h-4 md:[&>svg]:w-5 md:[&>svg]:h-5">
                           {statusIcons[status]}
                           <span className="absolute inset-0 rounded-full animate-ping bg-accent-foreground/30" />
                         </div>
                       ) : (
-                        statusIcons[status]
+                        <div className="[&>svg]:w-3 [&>svg]:h-3 sm:[&>svg]:w-4 sm:[&>svg]:h-4 md:[&>svg]:w-5 md:[&>svg]:h-5">{statusIcons[status]}</div>
                       )}
                     </div>
                     <span className="text-[10px] md:text-xs text-center hidden md:block">
@@ -322,11 +322,11 @@ const TrackingPage = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-3 gap-4 md:gap-6">
           {/* Left Column - Shipment Details */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-4 md:space-y-6">
             {/* Info Cards */}
-            <div className="grid sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
               <div className="bg-card rounded-xl p-4 border border-border transform hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-accent/10">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-8 bg-accent/10 rounded-lg flex items-center justify-center relative">
@@ -474,7 +474,7 @@ const TrackingPage = () => {
           </div>
 
           {/* Right Column - Package Info */}
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             {/* Route */}
             <div className="bg-card rounded-xl border border-border p-6 animate-fade-in">
               <h3 className="font-semibold text-foreground mb-4">Route</h3>
