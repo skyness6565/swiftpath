@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-navy text-primary-foreground">
       <div className="container-wide section-padding pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
           {/* Brand */}
           <div>
             <a href="/" className="flex items-center gap-2 mb-4">
@@ -76,14 +76,14 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-primary-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-primary-foreground/50 text-sm">
+        <div className="pt-6 md:pt-8 border-t border-primary-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4 text-center">
+          <p className="text-primary-foreground/50 text-xs md:text-sm">
             © {new Date().getFullYear()} SwiftPath Delivery. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <a href="#" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors">Privacy Policy</a>
-            <a href="#" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors">Terms of Service</a>
-            <a href="#" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors">Cookie Policy</a>
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+            <a href="#" className="text-primary-foreground/50 hover:text-accent text-xs md:text-sm transition-colors">Privacy Policy</a>
+            <a href="#" className="text-primary-foreground/50 hover:text-accent text-xs md:text-sm transition-colors">Terms of Service</a>
+            <a href="#" className="text-primary-foreground/50 hover:text-accent text-xs md:text-sm transition-colors">Cookie Policy</a>
           </div>
         </div>
       </div>
